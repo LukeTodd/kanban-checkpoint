@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col">
         {{board.title}}
-
-        <list v-for="list in lists" :listData='list'></list>
       </div>
     </div>
+    <list v-for="list in lists" :listData='list'></list>
   </div>
 </template>
 
 <script>
+  import List from '@/component/List.vue'
   export default {
     name: "board",
     computed: {
