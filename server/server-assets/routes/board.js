@@ -12,6 +12,18 @@ router.get('/', (req, res, next) => {
       next()
     })
 })
+// GET ONE BOARD
+router.get('/:id', (req, res, next) => {
+  Boards.findOne({ _id: req.params.id, authorId: req.session.uid })
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
 
 //POST
 router.post('/', (req, res, next) => {

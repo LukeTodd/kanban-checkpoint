@@ -32,6 +32,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    logout({ commit, dispatch }, payload) {
+      auth.delete('logout')
+        .then(res => {
+          router.push({ name: 'login' })
+        })
+    },
     //#region -- AUTH STUFF --
     register({ commit, dispatch }, newUser) {
       auth.post('register', newUser)

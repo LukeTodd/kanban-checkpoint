@@ -1,8 +1,12 @@
 <template>
-  <div class="board">
-    {{board.title}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        {{board.title}}
 
-    <list v-for="list in lists" :listData='list'></list>
+        <list v-for="list in lists" :listData='list'></list>
+      </div>
+    </div>
   </div>
 </template>
 

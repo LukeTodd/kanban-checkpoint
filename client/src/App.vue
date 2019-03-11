@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view />
+    <button @click="logout">LOGOUT</button>
   </div>
 </template>
 
@@ -10,6 +11,11 @@
     mounted() {
       //Authenticate on startup
       this.$store.dispatch('authenticate')
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch('logout')
+      }
     }
   }
 </script>
