@@ -49,3 +49,10 @@
     }
   };
 </script>
+
+<style>
+  .boards {
+    margin-top: 50px;
+
+  }
+</style>

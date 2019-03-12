@@ -1,9 +1,12 @@
+//ALL WORKING 3/12 @ 2:57pm
 let Lists = require('../models/list')
 let router = require('express').Router()
-//THIS WORKS
-router.get('/', (req, res, next) => {
-  let boardId = req.param('boardId')
-  Lists.find({ boardId, authorId: req.session.uid })
+
+let baseRoute = "/boards/:boardId/lists"
+
+//THIS ...
+router.get(baseRoute, (req, res, next) => {
+  Lists.find({ boardId: req.params.boardId, authorId: req.session.uid })
     .then(data => {
       res.send(data)
     })
@@ -12,8 +15,8 @@ router.get('/', (req, res, next) => {
       next()
     })
 })
-//THIS WORKS
-router.post('/', (req, res, next) => {
+//THIS WORKS!
+router.post(baseRoute, (req, res, next) => {
   req.body.authorId = req.session.uid
   Lists.create(req.body)
     .then(newList => {
@@ -25,9 +28,9 @@ router.post('/', (req, res, next) => {
     })
 })
 
-//Hasn't been tested
-router.put('/:id', (req, res, next) => {
-  let listId = req.param('listId')
+//this ...
+router.put(baseRoute + '/:id', (req, res, next) => {
+  let listId = req.param('id')
   Lists.findById(listId)
     .then(list => {
       if (!list.authorId.equals(req.session.uid)) {
@@ -54,7 +57,7 @@ router.put('/:id', (req, res, next) => {
 
 //DELETE
 //THIS WORKS
-router.delete('/:id', (req, res, next) => {
+router.delete(baseRoute + '/:id', (req, res, next) => {
   let boardId = req.param('boardId')
   Lists.findOne({ boardId, authorId: req.session.uid })
     .then(board => {

@@ -11,6 +11,20 @@ let schema = new Schema({
 }, { timestamps: true })
 
 //CASCADE ON DELETE
+
+schema.pre('remove', function (next) {
+  //lets find all the lists and remove them
+  this._id //THIS IS THE BOARD
+  Promise.all([
+    //Tasks.deleteMany({ boardId: this._id }),
+    Lists.deleteMany({ boardId: this._id })
+  ])
+    .then(() => next())
+    .catch(err => next(err))
+})
+
+
+//CASCADE ON DELETE
 // schema.pre('remove', function (next) {
 //   //lets find all the lists and remove them
 //   this._id //THIS IS THE BOARD

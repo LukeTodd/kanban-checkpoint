@@ -49,15 +49,18 @@ let commentRoutes = require('./server-assets/routes/comment')
 
 
 server.use('/api/boards', boardRoutes)
-server.use('/api/boards/:boardId/lists', listRoutes)
-server.use('/api/boards/:boardId/lists/:listId/tasks', taskRoutes)
-server.use('/api/boards/:boardId/lists/:listId/tasks/:taskId/comments', commentRoutes)
+server.use('/api/', listRoutes)
+server.use('/api/', taskRoutes)
+server.use('/api/', commentRoutes)
 
 
 
 
 
 //Catch all
+server.use('*', (err, req, res, next) => {
+  res.status(500).send(err)
+})
 server.use('*', (req, res, next) => {
   res.status(404).send({
     error: 'No matching routes'
