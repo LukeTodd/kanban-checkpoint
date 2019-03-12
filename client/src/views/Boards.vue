@@ -61,7 +61,7 @@
     margin-bottom: 15px;
     font-family: 'Sniglet', cursive;
     color: yellow;
-    text-shadow: 1px 1px rgb(255, 241, 118);
+    text-shadow: 1px 1px rgb(0, 0, 0);
   }
 
   .form {
@@ -75,7 +75,7 @@
   .button {
     border-radius: 5px;
     border: solid brown;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 3px 3px 5px rgb(255, 253, 124);
     background-color: yellow;
     margin: 5px;
   }
