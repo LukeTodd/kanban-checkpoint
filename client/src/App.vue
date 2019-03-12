@@ -1,8 +1,10 @@
 <template>
-  <div class="container-fluid" id="app">
+  <div class="container-fluid banana-bg" id="app">
     <div class="row">
       <div class="col-10 offset-1">
-        <router-link class="home" to="/"><i class="fab fa-fort-awesome"></i></router-link>
+        <router-link v-show="$route.name != 'login' && $route.name != 'boards'" to="/"><img class="home"
+            src="./assets/banana-home.png">
+        </router-link>
         <button class="logout" @click="logout">LOGOUT</button>
       </div>
     </div>
@@ -25,7 +27,13 @@
   }
 </script>
 
-<style scoped>
+<style>
+  .banana-bg {
+    background-image: url('./assets/kanbanbg.png');
+    background-size: cover;
+    min-height: 100vh;
+  }
+
   #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -48,7 +56,7 @@
   }
 
   .home {
-    font-size: 35px;
+    max-height: 50px;
     position: fixed;
     left: 25px;
     top: 10px;
