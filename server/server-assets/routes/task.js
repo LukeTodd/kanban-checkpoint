@@ -1,9 +1,10 @@
-let Lists = require('../models/list')
+let Tasks = require('../models/task')
 let router = require('express').Router()
-//THIS WORKS
+
+//This works
 router.get('/', (req, res, next) => {
-  let boardId = req.param('boardId')
-  Lists.find({ boardId, authorId: req.session.uid })
+  let listId = req.param('listId')
+  Tasks.find({ listId, authorId: req.session.uid })
     .then(data => {
       res.send(data)
     })
@@ -12,10 +13,10 @@ router.get('/', (req, res, next) => {
       next()
     })
 })
-//THIS WORKS
+
 router.post('/', (req, res, next) => {
   req.body.authorId = req.session.uid
-  Lists.create(req.body)
+  Tasks.create(req.body)
     .then(newList => {
       res.send(newList)
     })
@@ -28,12 +29,12 @@ router.post('/', (req, res, next) => {
 //Hasn't been tested
 router.put('/:id', (req, res, next) => {
   let listId = req.param('listId')
-  Lists.findById(listId)
-    .then(list => {
-      if (!list.authorId.equals(req.session.uid)) {
+  Tasks.find({ listId, authorId: req.session.uid })
+    .then(task => {
+      if (!task.listId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
-      list.update(req.body, (err) => {
+      task.update(req.body, (err) => {
         if (err) {
           console.log(err)
           next()
@@ -48,15 +49,10 @@ router.put('/:id', (req, res, next) => {
     })
 })
 
-
-
-
-
 //DELETE
-//THIS WORKS
 router.delete('/:id', (req, res, next) => {
-  let boardId = req.param('boardId')
-  Lists.findOne({ boardId, authorId: req.session.uid })
+  let taskId = req.param('taskId')
+  Tasks.findOne({ taskId, authorId: req.session.uid })
     .then(board => {
       board.remove(err => {
         if (err) {
@@ -71,6 +67,5 @@ router.delete('/:id', (req, res, next) => {
         })
     })
 })
-
 
 module.exports = router
