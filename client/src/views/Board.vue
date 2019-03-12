@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import List from '@/component/List.vue'
+  import List from '@/components/List.vue'
   export default {
     name: "board",
     computed: {

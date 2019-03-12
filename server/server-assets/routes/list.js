@@ -2,7 +2,8 @@ let Lists = require('../models/list')
 let router = require('express').Router()
 
 router.get('/', (req, res, next) => {
-  Lists.find({ _id: req.params.id, authorId: req.session.uid })
+  let boardId = req.param('boardId')
+  Lists.find({ boardId, authorId: req.session.uid })
     .then(data => {
       res.send(data)
     })
@@ -17,11 +18,11 @@ router.post('/', (req, res, next) => {
   Lists.create(req.body)
     .then(newList => {
       res.send(newList)
-      return res.status(200).send(newList)
     })
     .catch(err => {
       console.log(err)
       next()
     })
 })
+
 module.exports = router

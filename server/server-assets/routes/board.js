@@ -80,5 +80,6 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
+// router.use(':/boardId/lists', listRoutes)
 
 module.exports = router
