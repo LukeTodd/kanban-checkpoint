@@ -5,7 +5,7 @@
         <router-link v-show="$route.name != 'login' && $route.name != 'boards'" to="/"><img class="home"
             src="./assets/banana-home.png">
         </router-link>
-        <button class="logout" @click="logout">LOGOUT</button>
+        <button v-show="$route.name != 'login'" class="logout" @click="logout">LOGOUT</button>
       </div>
     </div>
     <router-view />
