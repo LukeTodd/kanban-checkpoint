@@ -8,14 +8,13 @@
         <button class="button" type="submit">Create Board</button>
       </form>
     </div>
-    <div class=" offset-1col-4 card" v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-      <button @click="deleteBoard(board._id)"><img class="banana-peel" src="../assets/banana-peel.png"></button>
-    </div>
+    <board-display v-for="board in boards" :boardData="board"></board-display>
   </div>
+
 </template>
 
 <script>
+  import BoardDisplay from '@/components/BoardDisplay.vue'
   export default {
     name: "boards",
     created() {
@@ -48,6 +47,9 @@
       deleteBoard(boardId) {
         this.$store.dispatch("deleteBoard", boardId);
       }
+    },
+    components: {
+      BoardDisplay
     }
   };
 </script>

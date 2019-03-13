@@ -29,7 +29,10 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
-    }
+    },
+    setActiveBoard(state, data) {
+      state.activeBoard = data
+    },
   },
   actions: {
     logout({ commit, dispatch }, payload) {
@@ -83,6 +86,13 @@ export default new Vuex.Store({
       api.delete('boards/' + boardId)
         .then(res => {
           dispatch('getBoards')
+        })
+    },
+    getActiveBoard({ commit, dispatch }, boardData) {
+      debugger
+      api.get('boards/' + boardData._id)
+        .then(res => {
+          commit('setActiveBoard', res.data)
         })
     }
     //#endregion
