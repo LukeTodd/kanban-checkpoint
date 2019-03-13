@@ -31,8 +31,8 @@
           <button type="submit">Create Account</button>
         </form>
         <div class="action" @click="loginForm = !loginForm">
-          <p v-if="loginForm">No account? Click here to Register</p>
-          <p v-else>Already have an account? Click here to Login</p>
+          <p v-if="loginForm">Click here to Register</p>
+          <p v-else>Click here to Login</p>
         </div>
       </div>
     </div>
@@ -91,20 +91,19 @@
     border-width: 1px;
     margin-bottom: 5px;
     border-color: rgb(179, 178, 178);
-    box-shadow: 1px black;
+    font-family: 'Kanit', sans-serif;
   }
 
   .login-button {
     min-width: 155px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgb(0, 0, 0);
-    background-color: rgb(251, 255, 4);
+    background-color: rgb(255, 255, 255);
   }
 
   input::placeholder {
     color: rgb(179, 178, 178);
-    text-shadow: 1px 1px rgb(66, 65, 65);
-    font-family: 'Knait', sans-serif;
+    font-family: 'Kanit', sans-serif;
   }
 
   input:focus {

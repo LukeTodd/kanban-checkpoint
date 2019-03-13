@@ -19,7 +19,7 @@ schema.pre('remove', function (next) {
   this._id //THIS IS THE BOARD
   Promise.all([
     //Tasks.deleteMany({ boardId: this._id }),
-    Lists.deleteMany({ boardId: this._id })
+    Lists.remove({ boardId: this._id })
   ])
     .then(() => next())
     .catch(err => next(err))

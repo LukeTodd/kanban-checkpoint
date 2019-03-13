@@ -1,19 +1,32 @@
 <template>
-  <div class="row">
-    <div class="col">
-      <form @submit.prevent="addBoard">
-        <input type="text" placeholder="title" v-model="newBoard.title" required>
-        <input type="text" placeholder="description" v-model="newBoard.description">
-        <button type="submit">Create Board</button>
-      </form>
-    </div>
+
+  <div class="col-3">
+
+    <task></task>
   </div>
+
 </template>
 
 <script>
+  import Task from '@/components/Task.vue'
   export default {
     name: 'List',
-    props: ['boardData']
+    props: ['listData'],
+    mounted: {},
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+    },
+    computed: {
+
+    },
+
+    components: {
+      Task
+    }
   }
 </script>
 
