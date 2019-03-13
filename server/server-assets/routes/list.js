@@ -12,7 +12,7 @@ router.get(baseRoute, (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 //THIS WORKS!
@@ -24,7 +24,7 @@ router.post(baseRoute, (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 
@@ -39,7 +39,7 @@ router.put(baseRoute + '/:id', (req, res, next) => {
       list.update(req.body, (err) => {
         if (err) {
           console.log(err)
-          next()
+          next(err)
           return
         }
         res.send("Successfully Updated")
@@ -47,7 +47,7 @@ router.put(baseRoute + '/:id', (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 
@@ -60,11 +60,11 @@ router.put(baseRoute + '/:id', (req, res, next) => {
 router.delete(baseRoute + '/:id', (req, res, next) => {
   let boardId = req.param('boardId')
   Lists.findOne({ boardId, authorId: req.session.uid })
-    .then(board => {
-      board.remove(err => {
+    .then(list => {
+      list.remove(err => {
         if (err) {
           console.log(err)
-          next()
+          next(err)
           return
         }
         res.send("Successfully Deleted")

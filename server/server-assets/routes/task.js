@@ -14,7 +14,7 @@ router.get(baseRoute, (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 
@@ -27,7 +27,7 @@ router.post(baseRoute, (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 
@@ -42,7 +42,7 @@ router.put(baseRoute + '/:id', (req, res, next) => {
       task.update(req.body, (err) => {
         if (err) {
           console.log(err)
-          next()
+          next(err)
           return
         }
         res.send("Successfully Updated")
@@ -50,7 +50,7 @@ router.put(baseRoute + '/:id', (req, res, next) => {
     })
     .catch(err => {
       console.log(err)
-      next()
+      next(err)
     })
 })
 
@@ -61,7 +61,7 @@ router.delete(baseRoute + '/:id', (req, res, next) => {
       board.remove(err => {
         if (err) {
           console.log(err)
-          next()
+          next(err)
           return
         }
         res.send("Successfully Deleted")

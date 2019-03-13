@@ -41,6 +41,9 @@ export default new Vuex.Store({
     },
     setList(state, data) {
       state.lists = data
+    },
+    addTask(state, data) {
+      state.tasks.push(data)
     }
   },
   actions: {
@@ -98,6 +101,7 @@ export default new Vuex.Store({
         })
     },
     getActiveBoard({ commit, dispatch }, boardData) {
+
       api.get('boards/' + boardData._id)
         .then(res => {
           commit('setActiveBoard', res.data)
@@ -107,23 +111,43 @@ export default new Vuex.Store({
 
 
     //#region -- LISTS --
-    getLists({ commit, dispatch }, boardId) {
-      api.get(boardId + '/lists/')
+    getLists({ commit, state }, boardId) {
+      if (!boardId) {
+        boardId = state.activeBoard._id
+      }
+      api.get('/boards/' + boardId + '/lists/')
         .then(res => {
           commit('setList', res.data)
         })
     },
-    createList({ commit, dispatch }, listData) {
-      api.post('/lists/', listData)
+    createList({ commit, state }, payload) {
+      let boardId = state.activeBoard._id
+      api.post('/boards/' + boardId + '/lists/', payload)
         .then(res => {
           commit('addList', res.data)
         })
     },
-    deleteList({ commit, dispatch }, listId) {
+    deleteList({ dispatch, state }, listId) {
+      let boardId = state.activeBoard._id
+      api.delete('/boards/' + boardId + '/lists/' + listId)
+        .then(res => {
+          dispatch('getLists')
+        })
+    },
+    //#endregion
 
+
+    //#region --TASKS--
+    createTask({ commit, state }, payload) {
+      debugger
+      api.post('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks', payload)
+        .then(res => {
+          commit('addTask', res.data)
+        })
     }
 
-
     //#endregion
+
+
   }
 })

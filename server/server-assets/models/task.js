@@ -2,6 +2,7 @@ let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 let schemaName = 'Task'
+let Comments = require('./comment')
 
 let schema = new Schema({
   body: { type: String, required: true },
