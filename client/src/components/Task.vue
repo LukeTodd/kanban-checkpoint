@@ -7,7 +7,7 @@
       <div class="col-12">
         <form @submit.prevent="createComment">
           <input type="text" placeholder="Comment Title" v-model="commentForm.body" required>
-          <button type="submit">Create Comment</button>
+          <button type="submit">+</button>
         </form>
       </div>
     </div>

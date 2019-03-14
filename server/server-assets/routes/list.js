@@ -58,8 +58,8 @@ router.put(baseRoute + '/:id', (req, res, next) => {
 //DELETE
 //THIS WORKS
 router.delete(baseRoute + '/:id', (req, res, next) => {
-  let boardId = req.param('boardId')
-  Lists.findOne({ boardId, authorId: req.session.uid })
+  // let boardId = req.param('boardId')
+  Lists.findOne({ _id: req.params.id, authorId: req.session.uid })
     .then(list => {
       list.remove(err => {
         if (err) {

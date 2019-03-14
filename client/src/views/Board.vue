@@ -1,21 +1,26 @@
 <template>
-  <div class="container-fluid">
-    <div class="bg row">
-      <div class="col">
-        <h2>{{board.title}}</h2>
+  <div class="row">
+    <div class="col">
+      <div class="bg row">
+        <div class="col">
+          <h2>{{board.title}}</h2>
 
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <form @submit.prevent="createList">
-          <input type="text" placeholder="title" v-model="listForm.title" required>
-          <button type="submit">Create List</button>
-        </form>
+      <div class="row">
+        <div class="col-12">
+          <form @submit.prevent="createList">
+            <input type="text" placeholder="title" v-model="listForm.title" required>
+            <button type="submit">Create List</button>
+          </form>
+        </div>
       </div>
-      <list v-for="list in lists" :listData='list'></list>
+      <div class="row flex-nowrap scroll-x">
+        <list v-for="list in lists" :listData='list'></list>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -60,6 +65,13 @@
 
 <style>
   .bg {
-    margin-top: 60px;
+    margin-top: 40px;
+  }
+
+  .scroll-x {
+    overflow-x: scroll;
+    width: 100vw;
+    position: fixed;
+    bottom: 5px;
   }
 </style>

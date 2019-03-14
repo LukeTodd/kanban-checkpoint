@@ -1,17 +1,30 @@
 <template>
   <div class=" m-2 card-list col-3">
     <div class="row">
-      <div class="col">
+      <div class="col-9 ">
         <h3>{{listData.title}}</h3>
       </div>
-      <div class="col-2 ml-auto">
-        <button class="delete-button" @click="deleteList(listData._id)"><i class="fas fa-ban"></i></button>
+      <div class="col-3 ml-auto">
+        <div class="dropdown">
+          <button class="dropdown-toggle list-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Edit List</a>
+            <a @click="deleteList(listData._id)" class="dropdown-item" href="#">Delete List</a>
+          </div>
+        </div>
+        <!-- <button class="delete-button" @click="deleteList(listData._id)"><i class="fas fa-ban"></i></button> -->
       </div>
     </div>
-    <form @submit.prevent="createTask">
-      <button type="submit">Task</button><br>
-      <input type="text" placeholder="title" v-model="taskForm.body" required>
-    </form>
+    <div class="row">
+      <div class="col">
+        <form @submit.prevent="createTask">
+          <input type="text" placeholder="title" v-model="taskForm.body" required>
+          <button class="add-task" type="submit">+</button>
+        </form>
+      </div>
+    </div>
     <div class="row">
       <task v-for="task in tasks" :taskData="task"></task>
     </div>
@@ -70,14 +83,27 @@
 </script>
 
 <style>
+  h3 {
+    margin-top: 10px;
+  }
+
+  .email {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid;
+    border-width: 1px;
+    margin-bottom: 5px;
+    border-color: rgb(179, 178, 178);
+    font-family: 'Kanit', sans-serif;
+  }
+
   .card-list {
-    min-height: 65vh;
-    min-width: 300px;
-    background-color: rgb(230, 230, 230);
+    height: 75vh;
+    max-width: 275px;
+    background-color: rgba(230, 230, 230, 0.945);
     overflow-y: scroll;
-    max-height: 66vh;
     border-radius: 8px;
-    box-shadow: 5px 5px 5px rgb(58, 58, 58);
+    box-shadow: 5px 5px 3px rgba(58, 58, 58, 0.63);
   }
 
   ::-webkit-scrollbar {
@@ -87,6 +113,7 @@
   ::-webkit-scrollbar-track {
     background: #e7e7e7;
     margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: 9px;
     border-style: solid;
     border-color: #e7e7e7;
@@ -103,5 +130,33 @@
     max-width: 20px;
     border-style: none;
     background-color: rgba(255, 255, 255, 0);
+  }
+
+  .list-drop {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0px;
+    margin-left: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    border: none;
+  }
+
+  .list-drop:hover {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .list-drop:focus {
+    outline: none;
+  }
+
+  .dropdown:focus {
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+  }
+
+  .dropdown-toggle {
+    background-color: rgba(0, 0, 0, 0, );
+    color: none;
   }
 </style>
