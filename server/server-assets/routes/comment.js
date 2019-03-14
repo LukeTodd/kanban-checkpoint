@@ -23,8 +23,8 @@ router.get(baseRoute, (req, res, next) => {
 router.post(baseRoute, (req, res, next) => {
   req.body.authorId = req.session.uid
   Comments.create(req.body)
-    .then(newList => {
-      res.send(newList)
+    .then(newComment => {
+      res.send(newComment)
     })
     .catch(err => {
       console.log(err)
@@ -58,7 +58,7 @@ router.put(baseRoute + '/:id', (req, res, next) => {
 //DELETE
 //THIS WORKS
 router.delete(baseRoute + '/:id', (req, res, next) => {
-  Comments.findOne({ commentId: req.params.commentId, authorId: req.session.uid })
+  Comments.findOne({ _id: req.params.id, authorId: req.session.uid })
     .then(comment => {
       comment.remove(err => {
         if (err) {

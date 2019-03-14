@@ -56,9 +56,9 @@ router.put(baseRoute + '/:id', (req, res, next) => {
 
 //DELETE
 router.delete(baseRoute + '/:id', (req, res, next) => {
-  Tasks.findOne({ taskId: req.params.taskId, authorId: req.session.uid })
-    .then(board => {
-      board.remove(err => {
+  Tasks.findOne({ _id: req.params.id, authorId: req.session.uid })
+    .then(task => {
+      task.remove(err => {
         if (err) {
           console.log(err)
           next(err)

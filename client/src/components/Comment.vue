@@ -1,6 +1,7 @@
 <template>
-  <div class="comment">
-
+  <div class="comment col-12">
+    <p>{{commentData.body}}
+      <button class="delete-comment" @click="deleteComment(commentData)"><i class="fas fa-ban"></i></button></p>
 
   </div>
 </template>
@@ -9,16 +10,27 @@
 <script>
   export default {
     name: 'comment',
+    props: ['commentData'],
     data() {
       return {}
     },
-    computed: {},
-    methods: {},
+    computed: {
+
+    },
+    methods: {
+      deleteComment(payload) {
+        return this.$store.dispatch('deleteComment', payload)
+      }
+    },
     components: {}
   }
 </script>
 
 
 <style scoped>
-
+  .delete-comment {
+    max-width: 25px;
+    border-style: none;
+    background-color: none;
+  }
 </style>

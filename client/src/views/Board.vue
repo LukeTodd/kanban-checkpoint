@@ -1,15 +1,16 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="bg row">
       <div class="col">
-        {{board.title}}
+        <h2>{{board.title}}</h2>
+        <h4>{{}}
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <form @submit.prevent="createList">
-          <button type="submit">Create List</button><br>
           <input type="text" placeholder="title" v-model="listForm.title" required>
+          <button type="submit">Create List</button>
         </form>
       </div>
       <list v-for="list in lists" :listData='list'></list>
@@ -23,6 +24,7 @@
     name: "board",
     mounted() {
       this.$store.dispatch('getLists', this.$route.params.boardId)
+
     },
     data() {
       return {
@@ -39,10 +41,6 @@
       }
     },
     methods: {
-      //I DONT THINK WE NEED THIS BUT KEEP IN CASE
-      // lists() {
-      //   return this.$store.state.lists;
-      // }
       createList() {
         let boardId = this.$store.state.activeBoard._id
         let title = this.listForm.title
@@ -59,3 +57,9 @@
     props: ["boardId"]
   };
 </script>
+
+<style>
+  .bg {
+    margin-top: 60px;
+  }
+</style>

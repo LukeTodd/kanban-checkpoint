@@ -23,8 +23,8 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
-    comments: []
+    tasks: {},
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -43,7 +43,17 @@ export default new Vuex.Store({
       state.lists = data
     },
     addTask(state, data) {
-      state.tasks.push(data)
+      state.tasks = data
+    },
+    setTasks(state, data) {
+      //state.tasks[data.listId] = data.tasks
+      Vue.set(state.tasks, data.listId, data.tasks)
+    },
+    addComment(state, data) {
+      state.comments = data
+    },
+    setComments(state, data) {
+      Vue.set(state.comments, data.taskId, data.comments)
     }
   },
   actions: {
@@ -138,13 +148,55 @@ export default new Vuex.Store({
 
 
     //#region --TASKS--
-    createTask({ commit, state }, payload) {
-      debugger
+    createTask({ commit, dispatch }, payload) {
       api.post('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks', payload)
         .then(res => {
-          commit('addTask', res.data)
+          dispatch('getTasks', res.data)
+        })
+    },
+    getTasks({ commit, state }, payload) {
+      if (!payload.boardId) {
+        payload.boardId = state.activeBoard._id
+      }
+      api.get('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
+        .then(res => {
+          commit('setTasks', { listId: payload.listId, tasks: res.data })
+        })
+    },
+    deleteTask({ dispatch, commit }, payload) {
+      api.delete('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id)
+        .then(res => {
+          dispatch('getTasks', payload)
+        })
+    },
+
+    //#endregion
+
+
+    //#region --COMMENTS--
+    createComment({ commit, dispatch }, payload) {
+      api.post('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments', payload)
+        .then(res => {
+          dispatch('getComments', res.data)
+        })
+    },
+    getComments({ commit, state }, payload) {
+      if (!payload.boardId) {
+        payload.boardId = state.activeBoard._id
+      }
+      api.get('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments')
+        .then(res => {
+          commit('setComments', { taskId: payload.taskId, comments: res.data })
+        })
+    },
+    deleteComment({ dispatch, commit }, payload) {
+      debugger
+      api.delete('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/' + payload._id)
+        .then(res => {
+          dispatch('getComments', payload)
         })
     }
+
 
     //#endregion
 
