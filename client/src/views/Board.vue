@@ -3,7 +3,7 @@
     <div class="bg row">
       <div class="col">
         <h2>{{board.title}}</h2>
-        <h4>{{}}
+
       </div>
     </div>
     <div class="row">
