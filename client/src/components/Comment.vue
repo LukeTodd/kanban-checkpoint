@@ -1,8 +1,8 @@
 <template>
-  <div class="comment col-12">
+  <div class="comment col-12 text-center">
     <p>{{commentData.body}}
-      <button class="delete-comment" @click="deleteComment(commentData)">-</button></p>
-
+      <button class="delete-comment" @click="deleteComment(commentData)">-</button>
+    </p>
   </div>
 </template>
 
@@ -29,8 +29,9 @@
 
 <style scoped>
   .delete-comment {
-    max-width: 25px;
     border-style: none;
-    background-color: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: red;
+
   }
 </style>

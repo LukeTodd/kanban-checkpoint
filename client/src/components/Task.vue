@@ -8,7 +8,9 @@
         <button @click="showForm = !showForm " class="comment-btn">Reply</button>
         <form v-if="showForm" @submit.prevent="createComment">
           <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
-          <button type="submit"></button>
+          <footer>
+            <button class="reply-button" type="submit"></button>
+          </footer>
         </form>
       </div>
     </div>
@@ -71,6 +73,11 @@
 
 
 <style scoped>
+  .reply-button {
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+  }
+
   .delete-button {
     max-width: 25px;
     color: red;
@@ -92,5 +99,13 @@
 
   .comment-btn:focus {
     outline: none;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center
   }
 </style>
