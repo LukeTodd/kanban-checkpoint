@@ -19,7 +19,7 @@
     "express-session": "^1.15.0",
     "mongoose": "^4.13.18"
   },
-  "engines" {
+  "engines": {
     "node": "^10.0.0",
     "npm": "^6.5.0"
   }
