@@ -1,17 +1,17 @@
 <template>
-  <div class=" offset-1col-4">
-    <div class="card">
+  <div class=" ml-2 mt-4 col-2">
+    <div class="card"
+      @click="setActiveBoard(boardData), $router.push({name: 'board', params: {boardId:boardData._id}})">
       <div class="card-body">
-        <h5 class="card-title"
-          @click="setActiveBoard(boardData), $router.push({name: 'board', params: {boardId:boardData._id}})">
+        <h5 class="card-title">
           {{boardData.title}}</h5>
 
         <p class="card-text">{{boardData.description}}
         </p>
 
+        <button class="delete-board" @click="deleteBoard(boardData._id)">Delete Board</button>
       </div>
     </div>
-    <button @click="deleteBoard(boardData._id)">Delete Board</button>
   </div>
 
 </template>
@@ -31,3 +31,14 @@
     }
   }
 </script>
+
+<style>
+  .card:hover {
+    cursor: pointer;
+  }
+
+  .delete-board {
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px black;
+  }
+</style>
