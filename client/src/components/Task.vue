@@ -84,6 +84,7 @@
     margin-top: 30px;
     border-radius: 8px;
     height: 90%;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.562);
   }
 
   .comment-btn {
