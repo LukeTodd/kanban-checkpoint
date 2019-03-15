@@ -1,5 +1,5 @@
 <template>
-  <drag class="task-card col-12 card" :transfer-data="taskData">
+  <drag class="task-card col-11 card" :transfer-data="taskData">
     <h4>{{taskData.body}}
       <button class="delete-button" @click="deleteTask(taskData)">-</i></button></h4>
     <div class="row">
