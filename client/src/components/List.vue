@@ -1,6 +1,6 @@
 <template>
-  <div class=" m-2 card-list col-3">
-    <div class="row">
+  <drop class=" m-2 card-list col-3" @drop="dragDrop">
+    <div class="row list-title">
       <div class="col-9 ">
         <h3>{{listData.title}}</h3>
       </div>
@@ -16,9 +16,7 @@
         </div>
         <!-- <button class="delete-button" @click="deleteList(listData._id)"><i class="fas fa-ban"></i></button> -->
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
+      <div class="col-12">
         <form @submit.prevent="createTask">
           <input type="text" placeholder="Add Task" v-model="taskForm.body" required>
           <button class="add-task" type="submit">+</button>
@@ -28,7 +26,7 @@
     <div class="row">
       <task v-for="task in tasks" :taskData="task"></task>
     </div>
-  </div>
+  </drop>
 
 </template>
 
@@ -69,6 +67,15 @@
           body
         }
         return this.$store.dispatch('createTask', payload)
+      },
+      dragDrop(task) {
+        let list = this.listData
+        let payload = {
+          listId: list._id,
+          task: task,
+          body: task.body
+        }
+        this.$store.dispatch('dragDrop', payload)
       }
     },
     computed: {
@@ -83,6 +90,14 @@
 </script>
 
 <style>
+  .list-title {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    background-color: rgb(230, 230, 230);
+    padding-bottom: 10px;
+  }
+
   h3 {
     margin-top: 10px;
   }
@@ -98,7 +113,7 @@
   }
 
   .card-list {
-    height: 75vh;
+    height: 72vh;
     max-width: 275px;
     background-color: rgba(230, 230, 230, 0.945);
     overflow-y: scroll;

@@ -158,7 +158,8 @@ export default new Vuex.Store({
       if (!payload.boardId) {
         payload.boardId = state.activeBoard._id
       }
-      api.get('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
+      let listId = payload.listId || payload.list.listId
+      api.get('/boards/' + payload.boardId + '/lists/' + listId + '/tasks')
         .then(res => {
           commit('setTasks', { listId: payload.listId, tasks: res.data })
         })
@@ -167,6 +168,15 @@ export default new Vuex.Store({
       api.delete('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload._id)
         .then(res => {
           dispatch('getTasks', payload)
+        })
+    },
+    dragDrop({ commit, dispatch }, payload) {
+      api.put('/boards/' + payload.task.boardId + '/lists/' + payload.task.listId + '/tasks/' + payload.task._id, payload)
+
+        .then(res => {
+          dispatch('getTasks', payload)
+          dispatch('getTasks', { payload, listId: payload.task.listId })
+
         })
     },
 

@@ -1,21 +1,18 @@
 <template>
-  <div class="task col-12">
-    <div class="task-card">
-      <h4>{{taskData.body}}</h4>
-      <!-- <button class="delete-button" @click="deleteTask(taskData)"><i class="fas fa-ban"></i></button> -->
-
-      <div class="row">
-        <comment v-for="comment in comments" :commentData="comment"></comment>
-        <div class="col-12">
-          <button @click="showForm = !showForm " class="comment-btn">comment</button>
-          <form v-if="showForm" @submit.prevent="createComment">
-            <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
-            <button type="submit">+</button>
-          </form>
-        </div>
+  <drag class="task-card col-11 card" :transfer-data="taskData">
+    <h4>{{taskData.body}}
+      <button class="delete-button" @click="deleteTask(taskData)">-</i></button></h4>
+    <div class="row">
+      <comment v-for="comment in comments" :commentData="comment"></comment>
+      <div class="col-12">
+        <button @click="showForm = !showForm " class="comment-btn">Reply</button>
+        <form v-if="showForm" @submit.prevent="createComment">
+          <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
+          <button type="submit"></button>
+        </form>
       </div>
     </div>
-  </div>
+  </drag>
 </template>
 
 
@@ -76,15 +73,21 @@
 <style scoped>
   .delete-button {
     max-width: 25px;
-    border-style: none;
+    color: red;
   }
 
   .task-card {
     background-color: rgba(75, 73, 73, 0.514);
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-left: 10px;
     border-radius: 8px;
+<<<<<<< HEAD
     height: 90%;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.562);
+=======
+    min-height: 150px;
+    max-width: 255px;
+>>>>>>> 78d90a8dd8121236e60378b7bf527f86808ad464
   }
 
   .comment-btn {

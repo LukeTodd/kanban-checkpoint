@@ -3,15 +3,15 @@
     <div class="col">
       <div class="bg row">
         <div class="col">
-          <h2>{{board.title}}</h2>
+          <h1>{{board.title}}</h1>
 
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 list-form">
           <form @submit.prevent="createList">
             <input type="text" placeholder="Title" v-model="listForm.title" required>
-            <button type="submit">Add List</button>
+            <button type="submit">+ List</button>
           </form>
         </div>
       </div>
@@ -65,7 +65,7 @@
 
 <style>
   .bg {
-    margin-top: 40px;
+    margin-top: -50px;
   }
 
   .scroll-x {
@@ -73,5 +73,9 @@
     width: 100vw;
     position: fixed;
     bottom: 5px;
+  }
+
+  .list-form {
+    margin-top: -15px;
   }
 </style>

@@ -2,11 +2,11 @@
 
   <div class="row boards">
     <div class="col-12">
-      <h2>My Boards</h2>
+      <h1>My Boards</h1>
       <form @submit.prevent="addBoard">
         <input class="form" type="text" placeholder="Title" v-model="newBoard.title" required>
         <input class="form" type="text" placeholder="Description" v-model="newBoard.description" required>
-        <button class="button" type="submit">Add Board</button>
+        <button class="button board-button" type="submit">+ Board</button>
       </form>
     </div>
     <board-display v-for="board in boards" :boardData="board"></board-display>
@@ -57,14 +57,15 @@
 
 <style>
   .boards {
-    margin-top: 50px;
+    margin-top: -55px;
   }
 
-  h2 {
+  h1 {
     margin-bottom: 15px;
     font-family: 'ABeeZee', sans-serif;
     color: white;
     text-shadow: 1px 1px rgb(0, 0, 0);
+    margin-bottom: 30px;
   }
 
   .form {
@@ -75,11 +76,11 @@
     margin: 5px;
   }
 
-  .button {
+  .board-button {
     border-radius: 5px;
-    border: solid brown;
-    box-shadow: 3px 3px 5px rgb(255, 253, 124);
-    background-color: yellow;
+    border: solid yellow;
+    box-shadow: 3px 3px 5px rgb(0, 0, 0);
+    background-color: rgb(255, 255, 147);
     margin: 5px;
   }
 
