@@ -1,11 +1,12 @@
 <template>
+
   <div class="row boards">
-    .<div class="col-12">
-      <h2>Banana Boards Baby!</h2>
+    <div class="col-12">
+      <h2>My Boards</h2>
       <form @submit.prevent="addBoard">
-        <input class="form" type="text" placeholder="title" v-model="newBoard.title" required>
-        <input class="form" type="text" placeholder="description" v-model="newBoard.description" required>
-        <button class="button" type="submit">Create Board</button>
+        <input class="form" type="text" placeholder="Title" v-model="newBoard.title" required>
+        <input class="form" type="text" placeholder="Description" v-model="newBoard.description" required>
+        <button class="button" type="submit">Add Board</button>
       </form>
     </div>
     <board-display v-for="board in boards" :boardData="board"></board-display>
@@ -61,8 +62,8 @@
 
   h2 {
     margin-bottom: 15px;
-    font-family: 'Sniglet', cursive;
-    color: yellow;
+    font-family: 'ABeeZee', sans-serif;
+    color: white;
     text-shadow: 1px 1px rgb(0, 0, 0);
   }
 

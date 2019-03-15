@@ -190,7 +190,6 @@ export default new Vuex.Store({
         })
     },
     deleteComment({ dispatch, commit }, payload) {
-      debugger
       api.delete('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.taskId + '/comments/' + payload._id)
         .then(res => {
           dispatch('getComments', payload)

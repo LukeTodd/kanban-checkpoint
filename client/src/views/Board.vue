@@ -10,8 +10,8 @@
       <div class="row">
         <div class="col-12">
           <form @submit.prevent="createList">
-            <input type="text" placeholder="title" v-model="listForm.title" required>
-            <button type="submit">Create List</button>
+            <input type="text" placeholder="Title" v-model="listForm.title" required>
+            <button type="submit">Add List</button>
           </form>
         </div>
       </div>

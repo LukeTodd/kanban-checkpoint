@@ -1,10 +1,17 @@
 <template>
-  <div class=" offset-1col-4 card board-display">
-    <div @click="setActiveBoard(boardData), $router.push({name: 'board', params: {boardId:boardData._id}})">
-      <p>{{boardData.title}}</p>
+  <div class=" offset-1col-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"
+          @click="setActiveBoard(boardData), $router.push({name: 'board', params: {boardId:boardData._id}})">
+          {{boardData.title}}</h5>
+
+        <p class="card-text">{{boardData.description}}
+        </p>
+
+      </div>
     </div>
-    <p>{{boardData.description}}</p>
-    <button @click="deleteBoard(boardData._id)"><img class="banana-peel" src="../assets/banana-peel.png"></button>
+    <button @click="deleteBoard(boardData._id)">Delete Board</button>
   </div>
 
 </template>

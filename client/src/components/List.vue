@@ -10,7 +10,7 @@
             aria-haspopup="true" aria-expanded="false">
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Edit List</a>
+            <a class="dropdown-item" href="#">Edit List Name</a>
             <a @click="deleteList(listData._id)" class="dropdown-item" href="#">Delete List</a>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col">
         <form @submit.prevent="createTask">
-          <input type="text" placeholder="title" v-model="taskForm.body" required>
+          <input type="text" placeholder="Add Task" v-model="taskForm.body" required>
           <button class="add-task" type="submit">+</button>
         </form>
       </div>

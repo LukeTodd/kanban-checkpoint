@@ -1,14 +1,18 @@
 <template>
   <div class="task col-12">
-    <h4>{{taskData.body}}
-      <button class="delete-button" @click="deleteTask(taskData)"><i class="fas fa-ban"></i></button></h4>
-    <div class="row">
-      <comment v-for="comment in comments" :commentData="comment"></comment>
-      <div class="col-12">
-        <form @submit.prevent="createComment">
-          <input type="text" placeholder="Comment Title" v-model="commentForm.body" required>
-          <button type="submit">+</button>
-        </form>
+    <div class="task-card">
+      <h4>{{taskData.body}}</h4>
+      <!-- <button class="delete-button" @click="deleteTask(taskData)"><i class="fas fa-ban"></i></button> -->
+
+      <div class="row">
+        <comment v-for="comment in comments" :commentData="comment"></comment>
+        <div class="col-12">
+          <button @click="showForm = !showForm " class="comment-btn">comment</button>
+          <form v-if="showForm" @submit.prevent="createComment">
+            <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
+            <button type="submit">+</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -22,7 +26,8 @@
     props: ['taskData'],
     data() {
       return {
-        commentForm: {}
+        commentForm: {},
+        showForm: false
       }
     },
     mounted() {
@@ -72,5 +77,21 @@
   .delete-button {
     max-width: 25px;
     border-style: none;
+  }
+
+  .task-card {
+    background-color: rgba(75, 73, 73, 0.514);
+    margin-top: 30px;
+    border-radius: 8px;
+    height: 90%;
+  }
+
+  .comment-btn {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+  }
+
+  .comment-btn:focus {
+    outline: none;
   }
 </style>
