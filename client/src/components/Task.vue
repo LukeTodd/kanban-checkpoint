@@ -1,15 +1,21 @@
 <template>
-  <drag class="task-card col-11 card" :transfer-data="taskData">
-    <h4>{{taskData.body}}
-      <button class="delete-button" @click="deleteTask(taskData)">-</i></button></h4>
+  <drag class="task-card col-12 card" :transfer-data="taskData">
     <div class="row">
-      <comment v-for="comment in comments" :commentData="comment"></comment>
-      <div class="col-12">
-        <button @click="showForm = !showForm " class="comment-btn">Reply</button>
-        <form v-if="showForm" @submit.prevent="createComment">
-          <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
-          <button type="submit"></button>
-        </form>
+      <div class="col-110">
+        <h4>{{taskData.body}}</h4>
+      </div>
+      <div class="col-2">
+        <button class="delete-button" @click="deleteTask(taskData)">-</button>
+      </div>
+      <div class="row">
+        <comment v-for="comment in comments" :commentData="comment"></comment>
+        <div class="col-12">
+          <button @click="showForm = !showForm " class="comment-btn">Reply</button>
+          <form v-if="showForm" @submit.prevent="createComment">
+            <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
+            <button type="submit"></button>
+          </form>
+        </div>
       </div>
     </div>
   </drag>
