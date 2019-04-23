@@ -72,4 +72,4 @@ When wrapping up the kanban project its important that you make an app that is f
 ### Bonus Ideas:
 - Add to the front and backend the ability to have collaborators on boards
 - Add Sockets to the project so any collaborator gets instant feedback when users modify a board
-- Comment authors username is next to the comment
+- Comment authors username is next to the comment# Kanbanana
