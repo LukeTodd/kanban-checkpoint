@@ -3,8 +3,11 @@
     <div class="row">
       <div class="col-12 no-pad" v-show="$route.name != 'login'">
         <nav class="navbar navbar-expand-lg navbar-light bg-green">
-          <a class="navbar-brand nav-title" href="#"><img class="kan-logo" src="./assets/Kan-banana-color.png"
-              alt=""></a>
+
+          <a class="navbar-brand nav-title" href="#">
+            <img @click="$router.push({name: 'boards'})" class="kan-logo" src="./assets/Kan-banana-color.png" alt="">
+          </a>
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -93,6 +96,7 @@
     background-color: black;
     color: white;
     font-family: 'Kanit', sans-serif;
+    z-index: 2;
   }
 
   .logout:hover {

@@ -2,7 +2,9 @@ var express = require('express')
 var bp = require('body-parser')
 var server = express()
 var cors = require('cors')
-var port = 3000
+
+var port = process.env.PORT || 3000
+server.use(express.static(__dirname + '/../client/dist'))
 
 var whitelist = ['http://localhost:8080'];
 var corsOptions = {

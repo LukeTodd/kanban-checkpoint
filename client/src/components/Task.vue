@@ -1,6 +1,7 @@
 <template>
   <drag class="task-card col-12 card" :transfer-data="taskData">
     <div class="row">
+<<<<<<< HEAD
       <div class="col-110">
         <h4>{{taskData.body}}</h4>
       </div>
@@ -16,6 +17,17 @@
             <button type="submit"></button>
           </form>
         </div>
+=======
+      <comment v-for="comment in comments" :commentData="comment"></comment>
+      <div class="col-12">
+        <button @click="showForm = !showForm " class="comment-btn">Reply</button>
+        <form v-if="showForm" @submit.prevent="createComment">
+          <input type="text" placeholder="Add Comment" v-model="commentForm.body" required>
+          <footer>
+            <button class="reply-button" type="submit"></button>
+          </footer>
+        </form>
+>>>>>>> 3fbdc5e467cbae474c1cb65ea5397bec24194829
       </div>
     </div>
   </drag>
@@ -77,6 +89,11 @@
 
 
 <style scoped>
+  .reply-button {
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+  }
+
   .delete-button {
     max-width: 25px;
     color: red;
@@ -98,5 +115,13 @@
 
   .comment-btn:focus {
     outline: none;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center
   }
 </style>

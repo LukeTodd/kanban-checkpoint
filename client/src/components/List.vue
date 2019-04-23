@@ -19,7 +19,7 @@
       <div class="col-12">
         <form @submit.prevent="createTask">
           <input type="text" placeholder="Add Task" v-model="taskForm.body" required>
-          <button class="add-task" type="submit">+</button>
+          <button class="add-task" type="submit"></button>
         </form>
       </div>
     </div>
@@ -36,10 +36,11 @@
     name: 'List',
     props: ['listData'],
 
+
     data() {
       return {
         taskForm: {
-        }
+        },
       }
     },
     mounted() {
@@ -90,6 +91,11 @@
 </script>
 
 <style>
+  .add-task {
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+  }
+
   .list-title {
     position: sticky;
     top: 0px;
